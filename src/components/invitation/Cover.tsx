@@ -37,8 +37,8 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
 
       <img className="mono-img" src={monogram.url} alt="حرفا محمد وفرح متشابكان بخط عربي مرصّع" />
 
-      <div className="cover-couple">FARAH &nbsp;|&nbsp; MOHAMMAD</div>
-      <div className="cover-date">4 . 9 . 2026</div>
+      <div className="cover-couple" dir="ltr">FARAH &nbsp;|&nbsp; MOHAMMAD</div>
+      <div className="cover-date" dir="ltr">4 . 9 . 2026</div>
       <div className="cover-bismillah">بسم الله الرحمن الرحيم</div>
 
       <button className="scroll-hint" onClick={onGoToInvite}>
