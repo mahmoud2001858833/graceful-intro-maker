@@ -2,46 +2,12 @@ import { useEffect, useRef } from "react";
 import monogram from "@/assets/monogram.png.asset.json";
 import { Curtains } from "./Curtains";
 import { Chandelier } from "./Chandelier";
-import { SoundToggle } from "./SoundToggle";
-import { enableSound, isSoundOn, playIntro, playTransition } from "@/lib/invitation-audio";
 
 const INTRO_MS = 3200;
-const AUTO_SCROLL_DELAY_MS = 5000;
+const AUTO_SCROLL_DELAY_MS = 2000;
 
 export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
   const cancelled = useRef(false);
-  const introPlayed = useRef(false);
-
-  // Browsers block audio before a gesture: try right away, otherwise start on
-  // the visitor's first tap/scroll so the music still accompanies the intro.
-  useEffect(() => {
-    let done = false;
-    const start = async () => {
-      if (done) return;
-      const ok = await enableSound();
-      if (ok) {
-        done = true;
-        if (!introPlayed.current) {
-          introPlayed.current = true;
-          playIntro();
-        }
-      }
-    };
-    void start();
-    const onGesture = (e: Event) => {
-      // the toggle button manages sound itself
-      if (e.target instanceof Element && e.target.closest(".sound-toggle")) return;
-      void start();
-    };
-    window.addEventListener("pointerdown", onGesture, { passive: true });
-    window.addEventListener("touchstart", onGesture, { passive: true });
-    window.addEventListener("keydown", onGesture);
-    return () => {
-      window.removeEventListener("pointerdown", onGesture);
-      window.removeEventListener("touchstart", onGesture);
-      window.removeEventListener("keydown", onGesture);
-    };
-  }, []);
 
   useEffect(() => {
     const cancel = () => {
@@ -53,7 +19,6 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
 
     const timer = window.setTimeout(() => {
       if (!cancelled.current && window.scrollY < 40) {
-        if (isSoundOn()) playTransition();
         onGoToInvite();
       }
     }, INTRO_MS + AUTO_SCROLL_DELAY_MS);
@@ -66,18 +31,12 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
     };
   }, [onGoToInvite]);
 
-  const goNow = () => {
-    if (isSoundOn()) playTransition();
-    onGoToInvite();
-  };
-
   return (
     <section className="cover">
       <div className="cover-grain" aria-hidden="true" />
       <div className="cover-glow" aria-hidden="true" />
       <Curtains />
       <Chandelier />
-      <SoundToggle />
 
       <div className="mono-wrap">
         <span className="mono-halo" aria-hidden="true" />
@@ -96,7 +55,7 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
       <div className="cover-date" dir="ltr">4 . 9 . 2026</div>
       <div className="cover-bismillah">بسم الله الرحمن الرحيم</div>
 
-      <button className="scroll-hint" onClick={goNow}>
+      <button className="scroll-hint" onClick={onGoToInvite}>
         <span>مرّر للأسفل</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
           <path d="M6 9l6 6 6-6" />
