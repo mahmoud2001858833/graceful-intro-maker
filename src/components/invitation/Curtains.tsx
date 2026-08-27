@@ -9,25 +9,25 @@ export function Curtains() {
     >
       <defs>
         <linearGradient id="curtGrad" x1="0" y1="0" x2="1" y2="0.4">
-          <stop offset="0%" stopColor="#D9C6A6" />
-          <stop offset="35%" stopColor="#EADCC1" />
-          <stop offset="70%" stopColor="#DCC9A8" />
-          <stop offset="100%" stopColor="#C9B48F" />
+          <stop offset="0%" stopColor="#F3EDE1" />
+          <stop offset="35%" stopColor="#FFFFFF" />
+          <stop offset="70%" stopColor="#F7F2E7" />
+          <stop offset="100%" stopColor="#E7DCC4" />
         </linearGradient>
         <linearGradient id="curtGradR" x1="1" y1="0" x2="0" y2="0.4">
-          <stop offset="0%" stopColor="#D9C6A6" />
-          <stop offset="35%" stopColor="#EADCC1" />
-          <stop offset="70%" stopColor="#DCC9A8" />
-          <stop offset="100%" stopColor="#C9B48F" />
+          <stop offset="0%" stopColor="#F3EDE1" />
+          <stop offset="35%" stopColor="#FFFFFF" />
+          <stop offset="70%" stopColor="#F7F2E7" />
+          <stop offset="100%" stopColor="#E7DCC4" />
         </linearGradient>
         <linearGradient id="swagGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F0E3C8" />
-          <stop offset="100%" stopColor="#D6C098" />
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#F0E7D4" />
         </linearGradient>
         <radialGradient id="beadGrad" cx="0.35" cy="0.3" r="0.75">
-          <stop offset="0%" stopColor="#FFFDF6" />
-          <stop offset="60%" stopColor="#EBDCBB" />
-          <stop offset="100%" stopColor="#C4A876" />
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="60%" stopColor="#F6EEDB" />
+          <stop offset="100%" stopColor="#D9BE86" />
         </radialGradient>
       </defs>
 
@@ -44,22 +44,22 @@ export function Curtains() {
 
       {/* deep pleat shading */}
       <g opacity=".38">
-        <path d="M18 0 C 44 80, 30 180, 8 274 L0 268 L0 0 Z" fill="#C0A778" />
-        <path d="M52 0 C 74 80, 58 180, 36 282 L26 276 C 48 176, 62 78, 42 0 Z" fill="#BFA576" />
-        <path d="M92 0 C 104 78, 88 172, 66 280 L56 274 C 80 172, 92 76, 82 0 Z" fill="#C6AE81" />
-        <path d="M126 0 C 132 74, 116 164, 96 268 L86 262 C 108 162, 120 72, 116 0 Z" fill="#C9B287" />
-        <path d="M482 0 C 456 80, 470 180, 492 274 L500 268 L500 0 Z" fill="#C0A778" />
-        <path d="M448 0 C 426 80, 442 180, 464 282 L474 276 C 452 176, 438 78, 458 0 Z" fill="#BFA576" />
-        <path d="M408 0 C 396 78, 412 172, 434 280 L444 274 C 420 172, 408 76, 418 0 Z" fill="#C6AE81" />
-        <path d="M374 0 C 368 74, 384 164, 404 268 L414 262 C 392 162, 380 72, 384 0 Z" fill="#C9B287" />
+        <path d="M18 0 C 44 80, 30 180, 8 274 L0 268 L0 0 Z" fill="#E4D6B8" />
+        <path d="M52 0 C 74 80, 58 180, 36 282 L26 276 C 48 176, 62 78, 42 0 Z" fill="#E2D3B4" />
+        <path d="M92 0 C 104 78, 88 172, 66 280 L56 274 C 80 172, 92 76, 82 0 Z" fill="#E9DCC2" />
+        <path d="M126 0 C 132 74, 116 164, 96 268 L86 262 C 108 162, 120 72, 116 0 Z" fill="#EEE3CD" />
+        <path d="M482 0 C 456 80, 470 180, 492 274 L500 268 L500 0 Z" fill="#E4D6B8" />
+        <path d="M448 0 C 426 80, 442 180, 464 282 L474 276 C 452 176, 438 78, 458 0 Z" fill="#E2D3B4" />
+        <path d="M408 0 C 396 78, 412 172, 434 280 L444 274 C 420 172, 408 76, 418 0 Z" fill="#E9DCC2" />
+        <path d="M374 0 C 368 74, 384 164, 404 268 L414 262 C 392 162, 380 72, 384 0 Z" fill="#EEE3CD" />
       </g>
 
       {/* highlight sheen */}
       <g opacity=".55">
-        <path d="M34 0 C 58 80, 44 180, 22 276 L28 278 C 52 182, 66 80, 42 0 Z" fill="#F6EEDA" />
-        <path d="M110 0 C 118 76, 102 168, 80 272 L86 274 C 108 170, 126 76, 118 0 Z" fill="#F6EEDA" />
-        <path d="M466 0 C 442 80, 456 180, 478 276 L472 278 C 448 182, 434 80, 458 0 Z" fill="#F6EEDA" />
-        <path d="M390 0 C 382 76, 398 168, 420 272 L414 274 C 392 170, 374 76, 382 0 Z" fill="#F6EEDA" />
+        <path d="M34 0 C 58 80, 44 180, 22 276 L28 278 C 52 182, 66 80, 42 0 Z" fill="#FFFFFF" />
+        <path d="M110 0 C 118 76, 102 168, 80 272 L86 274 C 108 170, 126 76, 118 0 Z" fill="#FFFFFF" />
+        <path d="M466 0 C 442 80, 456 180, 478 276 L472 278 C 448 182, 434 80, 458 0 Z" fill="#FFFFFF" />
+        <path d="M390 0 C 382 76, 398 168, 420 272 L414 274 C 392 170, 374 76, 382 0 Z" fill="#FFFFFF" />
       </g>
 
       {/* crystal beading along the inner edge of each panel */}
@@ -109,13 +109,13 @@ export function Curtains() {
       />
       <path
         d="M152 34 C 186 76, 214 98, 240 104"
-        stroke="#B8935A"
+        stroke="#C9A227"
         strokeWidth="1"
         opacity=".45"
       />
       <path
         d="M348 34 C 314 76, 286 98, 260 104"
-        stroke="#B8935A"
+        stroke="#C9A227"
         strokeWidth="1"
         opacity=".45"
       />
@@ -142,11 +142,11 @@ export function Curtains() {
       </g>
 
       {/* center tassel */}
-      <line x1="250" y1="120" x2="250" y2="142" stroke="#B8935A" strokeWidth="1" opacity=".7" />
+      <line x1="250" y1="120" x2="250" y2="142" stroke="#C9A227" strokeWidth="1" opacity=".7" />
       <circle cx="250" cy="147" r="5" fill="url(#beadGrad)" />
       <path
         d="M244 152 L244 168 M250 153 L250 172 M256 152 L256 168"
-        stroke="#B8935A"
+        stroke="#C9A227"
         strokeWidth="1"
         strokeLinecap="round"
         opacity=".7"

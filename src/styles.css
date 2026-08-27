@@ -147,16 +147,17 @@
    Wedding invitation design tokens
    ============================================================ */
 :root {
-  --inv-bg: oklch(0.98 0.012 85);
-  --inv-panel: oklch(0.985 0.008 85);
-  --inv-cover: oklch(0.8 0.033 80);
-  --inv-cover-deep: oklch(0.74 0.038 78);
-  --inv-gold: oklch(0.66 0.062 75);
-  --inv-gold-deep: oklch(0.53 0.06 72);
-  --inv-gold-light: oklch(0.88 0.032 82);
-  --inv-ink: oklch(0.29 0.018 62);
+  --inv-bg: oklch(0.995 0.004 90);
+  --inv-panel: oklch(1 0 0);
+  --inv-cover: oklch(0.985 0.008 90);
+  --inv-cover-deep: oklch(0.965 0.014 92);
+  --inv-gold: oklch(0.76 0.104 84);
+  --inv-gold-deep: oklch(0.62 0.096 78);
+  --inv-gold-light: oklch(0.93 0.048 92);
+  --inv-ink: oklch(0.27 0.014 60);
   --inv-muted: oklch(0.56 0.02 70);
 }
+
 
 .invite-root {
   background: var(--inv-bg);
@@ -189,18 +190,32 @@
   overflow: hidden;
   text-align: center;
   background:
-    radial-gradient(120% 70% at 50% 30%, oklch(0.85 0.03 82) 0%, transparent 65%),
-    linear-gradient(180deg, var(--inv-cover-deep) 0%, var(--inv-cover) 45%, oklch(0.83 0.03 82) 100%);
+    radial-gradient(120% 65% at 50% 26%, oklch(1 0 0) 0%, transparent 62%),
+    linear-gradient(180deg, var(--inv-cover-deep) 0%, var(--inv-cover) 40%, oklch(1 0 0) 100%);
+}
+
+.cover-glow {
+  position: absolute;
+  left: 50%;
+  top: 34%;
+  z-index: 0;
+  width: min(560px, 120%);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(circle, oklch(0.93 0.06 92 / 0.5) 0%, transparent 62%);
+  opacity: 0;
+  animation: inv-rise 2.4s ease 1.1s forwards;
 }
 
 .cover-grain {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.22;
   background-image:
-    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.09) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(65deg, rgba(120, 95, 60, 0.05) 0 1px, transparent 1px 5px);
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(65deg, rgba(190, 160, 90, 0.05) 0 1px, transparent 1px 5px);
 }
 
 .curtain-svg {
@@ -209,11 +224,12 @@
   width: 100%;
   max-width: 680px;
   height: auto;
-  filter: drop-shadow(0 14px 26px oklch(0.55 0.04 70 / 0.28));
+  filter: drop-shadow(0 16px 30px oklch(0.72 0.05 85 / 0.22));
   opacity: 0;
   transform: translateY(-34px);
   animation: inv-drop 1.4s cubic-bezier(0.2, 0.75, 0.25, 1) 0.05s forwards;
 }
+
 @keyframes inv-drop {
   to {
     opacity: 1;
@@ -255,13 +271,30 @@
   }
 }
 
-.mono-img {
+.mono-wrap {
   position: relative;
   z-index: 1;
+  margin-top: clamp(30px, 12vh, 110px);
+  display: grid;
+  place-items: center;
+}
+
+.mono-halo {
+  position: absolute;
+  width: min(320px, 82vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(1 0 0 / 0.9) 0%, oklch(0.96 0.03 92 / 0.35) 45%, transparent 70%);
+  box-shadow: 0 0 60px oklch(0.9 0.06 92 / 0.5);
+  opacity: 0;
+  animation: inv-rise 1.8s ease 1s forwards;
+}
+
+.mono-img {
+  position: relative;
   width: min(268px, 66%);
   height: auto;
-  margin-top: clamp(34px, 13vh, 118px);
-  filter: drop-shadow(0 6px 14px oklch(0.5 0.04 70 / 0.25));
+  filter: drop-shadow(0 8px 18px oklch(0.7 0.05 85 / 0.28));
   opacity: 0;
   transform: scale(0.86);
   animation: inv-mono 1.25s cubic-bezier(0.2, 0.8, 0.3, 1) 1.25s forwards;
@@ -272,6 +305,59 @@
     transform: scale(1);
   }
 }
+
+.cover-rule {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(240px, 62%);
+  color: var(--inv-gold);
+  opacity: 0;
+  animation: inv-rise 1s ease 1.9s forwards;
+}
+.cover-rule span {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inv-gold), transparent);
+}
+.cover-rule svg {
+  width: 13px;
+  height: 13px;
+}
+
+.sound-toggle {
+  position: absolute;
+  top: 16px;
+  inset-inline-start: 16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid oklch(0.85 0.05 90 / 0.7);
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.72);
+  backdrop-filter: blur(6px);
+  color: var(--inv-gold-deep);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px oklch(0.75 0.05 88 / 0.18);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.sound-toggle:hover {
+  background: oklch(1 0 0 / 0.92);
+  transform: translateY(-1px);
+}
+.sound-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
 
 .cover-couple,
 .cover-date,
