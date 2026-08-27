@@ -9,7 +9,7 @@ type InvNodes = {
   master: GainNode;
   wet: GainNode;
   padGain: GainNode;
-  padStop?: () => void;
+  padStop?: (() => void) | undefined;
 };
 
 let ctx: Ctx | null = null;

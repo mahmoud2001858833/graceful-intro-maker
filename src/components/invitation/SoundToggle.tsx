@@ -4,7 +4,12 @@ import { subscribeSound, toggleSound } from "@/lib/invitation-audio";
 export function SoundToggle() {
   const [on, setOn] = useState(false);
 
-  useEffect(() => subscribeSound(setOn), []);
+  useEffect(() => {
+    const off = subscribeSound(setOn);
+    return () => {
+      off();
+    };
+  }, []);
 
   return (
     <button
