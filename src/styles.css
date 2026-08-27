@@ -260,7 +260,7 @@
   z-index: 1;
   width: min(268px, 66%);
   height: auto;
-  margin-top: clamp(18px, 6vh, 52px);
+  margin-top: clamp(34px, 13vh, 118px);
   filter: drop-shadow(0 6px 14px oklch(0.5 0.04 70 / 0.25));
   opacity: 0;
   transform: scale(0.86);
@@ -298,7 +298,7 @@
   animation-delay: 2.4s;
 }
 .cover-bismillah {
-  margin-top: 26px;
+  margin-top: 30px;
   font-family: "Aref Ruqaa", serif;
   font-size: 18px;
   color: oklch(0.5 0.055 70);
