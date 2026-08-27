@@ -26,12 +26,12 @@ export function Chandelier() {
 
       {/* candles */}
       <g>
-        {[
+        {([
           [36, 118],
           [62, 96],
           [118, 96],
           [144, 118],
-        ].map(([x, y], i) => (
+        ] as [number, number][]).map(([x, y], i) => (
           <g key={i}>
             <path d={`M${x - 5} ${y} L${x + 5} ${y} L${x + 3.5} ${y - 6} L${x - 3.5} ${y - 6} Z`} fill="currentColor" stroke="none" opacity=".8" />
             <rect x={x - 2.2} y={y - 28} width="4.4" height="22" fill="#F6ECD8" stroke="currentColor" strokeWidth=".7" />
@@ -42,13 +42,13 @@ export function Chandelier() {
 
       {/* hanging crystals */}
       <g strokeWidth=".8">
-        {[
+        {([
           [36, 126, 26],
           [62, 116, 20],
           [90, 116, 34],
           [118, 116, 20],
           [144, 126, 26],
-        ].map(([x, y, len], i) => (
+        ] as [number, number, number][]).map(([x, y, len], i) => (
           <g key={i}>
             <line x1={x} y1={y} x2={x} y2={y + len} />
             <path

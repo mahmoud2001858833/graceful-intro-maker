@@ -64,7 +64,7 @@ export function Curtains() {
 
       {/* crystal beading along the inner edge of each panel */}
       <g>
-        {[
+        {([
           [152, 62],
           [146, 82],
           [139, 102],
@@ -76,13 +76,13 @@ export function Curtains() {
           [76, 244],
           [62, 268],
           [46, 292],
-        ].map(([x, y], i) => (
+        ] as [number, number][]).map(([x, y], i) => (
           <g key={`bl-${i}`}>
             <circle cx={x} cy={y} r={4.6 - i * 0.12} fill="url(#beadGrad)" />
             <circle cx={x - 1.2} cy={y - 1.4} r="1.1" fill="#FFFFFF" opacity=".9" />
           </g>
         ))}
-        {[
+        {([
           [348, 62],
           [354, 82],
           [361, 102],
@@ -94,7 +94,7 @@ export function Curtains() {
           [424, 244],
           [438, 268],
           [454, 292],
-        ].map(([x, y], i) => (
+        ] as [number, number][]).map(([x, y], i) => (
           <g key={`br-${i}`}>
             <circle cx={x} cy={y} r={4.6 - i * 0.12} fill="url(#beadGrad)" />
             <circle cx={x - 1.2} cy={y - 1.4} r="1.1" fill="#FFFFFF" opacity=".9" />
@@ -122,7 +122,7 @@ export function Curtains() {
 
       {/* crystal fringe along the valance */}
       <g>
-        {[
+        {([
           [168, 20],
           [182, 38],
           [197, 55],
@@ -133,7 +133,7 @@ export function Curtains() {
           [303, 55],
           [286, 71],
           [268, 85],
-        ].map(([x, y], i) => (
+        ] as [number, number][]).map(([x, y], i) => (
           <g key={`v-${i}`}>
             <circle cx={x} cy={y} r="4.2" fill="url(#beadGrad)" />
             <circle cx={x - 1} cy={y - 1.2} r="1" fill="#FFFFFF" opacity=".9" />
