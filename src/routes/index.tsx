@@ -1,24 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback } from "react";
+import { Cover } from "@/components/invitation/Cover";
+import { InvitationCard } from "@/components/invitation/InvitationCard";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "حفل زفاف محمد وفرح — ٤ / ٩ / ٢٠٢٦" },
+      {
+        name: "description",
+        content:
+          "دعوة حفل زفاف محمد وفرح، يوم الجمعة ٤ / ٩ / ٢٠٢٦ في حديقة تاج بارك للمناسبات — الرمثا. بحضوركم تكتمل فرحتنا.",
+      },
+      { property: "og:title", content: "حفل زفاف محمد وفرح — ٤ / ٩ / ٢٠٢٦" },
+      {
+        property: "og:description",
+        content: "بحضوركم تكتمل فرحتنا — حديقة تاج بارك للمناسبات، الرمثا.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const goToInvite = useCallback(() => {
+    document.getElementById("main-invite")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main dir="rtl" className="invite-root">
+      <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
+      <Cover onGoToInvite={goToInvite} />
+      <InvitationCard />
+    </main>
   );
 }

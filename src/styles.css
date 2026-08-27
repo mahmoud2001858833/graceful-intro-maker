@@ -142,3 +142,516 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+   Wedding invitation design tokens
+   ============================================================ */
+:root {
+  --inv-bg: oklch(0.98 0.012 85);
+  --inv-panel: oklch(0.985 0.008 85);
+  --inv-cover: oklch(0.8 0.033 80);
+  --inv-cover-deep: oklch(0.74 0.038 78);
+  --inv-gold: oklch(0.66 0.062 75);
+  --inv-gold-deep: oklch(0.53 0.06 72);
+  --inv-gold-light: oklch(0.88 0.032 82);
+  --inv-ink: oklch(0.29 0.018 62);
+  --inv-muted: oklch(0.56 0.02 70);
+}
+
+.invite-root {
+  background: var(--inv-bg);
+  color: var(--inv-ink);
+  font-family: "Cairo", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ---------------- Cover ---------------- */
+.cover {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 56px;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(120% 70% at 50% 30%, oklch(0.85 0.03 82) 0%, transparent 65%),
+    linear-gradient(180deg, var(--inv-cover-deep) 0%, var(--inv-cover) 45%, oklch(0.83 0.03 82) 100%);
+}
+
+.cover-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.09) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(65deg, rgba(120, 95, 60, 0.05) 0 1px, transparent 1px 5px);
+}
+
+.curtain-svg {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  filter: drop-shadow(0 14px 26px oklch(0.55 0.04 70 / 0.28));
+  opacity: 0;
+  transform: translateY(-34px);
+  animation: inv-drop 1.4s cubic-bezier(0.2, 0.75, 0.25, 1) 0.05s forwards;
+}
+@keyframes inv-drop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chandelier {
+  position: relative;
+  z-index: 1;
+  width: min(172px, 44%);
+  height: auto;
+  margin-top: 4px;
+  color: var(--inv-gold);
+  filter: drop-shadow(0 0 16px oklch(0.9 0.06 85 / 0.55));
+  opacity: 0;
+  transform: translateY(-18px) scale(0.92);
+  animation: inv-chandelier 1.2s cubic-bezier(0.2, 0.8, 0.3, 1) 0.6s forwards;
+}
+@keyframes inv-chandelier {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.chandelier .flame {
+  animation: inv-flicker 2.6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+@keyframes inv-flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.12);
+  }
+}
+
+.mono-img {
+  position: relative;
+  z-index: 1;
+  width: min(268px, 66%);
+  height: auto;
+  margin-top: clamp(34px, 13vh, 118px);
+  filter: drop-shadow(0 6px 14px oklch(0.5 0.04 70 / 0.25));
+  opacity: 0;
+  transform: scale(0.86);
+  animation: inv-mono 1.25s cubic-bezier(0.2, 0.8, 0.3, 1) 1.25s forwards;
+}
+@keyframes inv-mono {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cover-couple,
+.cover-date,
+.cover-bismillah {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: inv-rise 1s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+.cover-couple {
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  color: var(--inv-gold-deep);
+  animation-delay: 2.1s;
+}
+.cover-date {
+  margin-top: 14px;
+  font-size: 15px;
+  letter-spacing: 6px;
+  color: var(--inv-gold-deep);
+  animation-delay: 2.4s;
+}
+.cover-bismillah {
+  margin-top: 30px;
+  font-family: "Aref Ruqaa", serif;
+  font-size: 18px;
+  color: oklch(0.5 0.055 70);
+  animation-delay: 2.7s;
+}
+@keyframes inv-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--inv-gold-deep);
+  opacity: 0;
+  animation: inv-rise 1s ease 3.1s forwards;
+}
+.scroll-hint svg {
+  width: 18px;
+  height: 18px;
+  animation: inv-bounce 1.7s ease-in-out infinite;
+}
+@keyframes inv-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* ---------------- Invitation card ---------------- */
+.content-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px 72px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  border: 1px solid var(--inv-gold-light);
+  background: var(--inv-panel);
+  box-shadow: 0 24px 60px -30px oklch(0.55 0.05 70 / 0.4);
+  padding: 60px 26px 46px;
+  text-align: center;
+}
+
+.frame .c1,
+.frame .c2,
+.frame .c3,
+.frame .c4 {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border: 1.4px solid var(--inv-gold);
+  opacity: 0.75;
+}
+.frame .c1 {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
+}
+.frame .c2 {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.frame .c3 {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+.frame .c4 {
+  bottom: -1px;
+  left: -1px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--inv-gold);
+}
+.cd1 {
+  top: 11px;
+  right: 11px;
+}
+.cd2 {
+  top: 11px;
+  left: 11px;
+}
+.cd3 {
+  bottom: 11px;
+  right: 11px;
+}
+.cd4 {
+  bottom: 11px;
+  left: 11px;
+}
+
+.bismillah {
+  font-family: "Aref Ruqaa", serif;
+  font-size: 20px;
+  color: var(--inv-gold);
+  letter-spacing: 1.5px;
+  margin-bottom: 22px;
+}
+
+.opening-ornament {
+  display: block;
+  width: min(270px, 78%);
+  height: auto;
+  margin: 0 auto 26px;
+  color: var(--inv-gold);
+}
+
+.ayah-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ayah-wrap .qmark {
+  font-family: "Amiri", serif;
+  font-size: 30px;
+  color: var(--inv-gold);
+}
+.ayah {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: clamp(24px, 5.6vw, 33px);
+  line-height: 2;
+  color: var(--inv-gold-deep);
+}
+
+.honor {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--inv-gold);
+  margin-bottom: 10px;
+}
+.fam-names {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: clamp(19px, 4.6vw, 23px);
+  color: var(--inv-ink);
+  line-height: 1.9;
+}
+.fam-names .amp-sm {
+  color: var(--inv-gold);
+  margin: 0 8px;
+  font-size: 16px;
+}
+.invite-line {
+  margin-top: 14px;
+  font-size: 15px;
+  color: var(--inv-muted);
+}
+
+.notice {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 9px 20px;
+  border: 1px dashed var(--inv-gold-light);
+  color: var(--inv-gold-deep);
+  font-size: 12.5px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 34px 0;
+  color: var(--inv-gold);
+}
+.divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to left,
+    transparent,
+    var(--inv-gold-light) 30%,
+    var(--inv-gold) 50%,
+    var(--inv-gold-light) 70%,
+    transparent
+  );
+}
+.divider .line.rev {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--inv-gold-light) 30%,
+    var(--inv-gold) 50%,
+    var(--inv-gold-light) 70%,
+    transparent
+  );
+}
+.divider svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.names {
+  margin: 36px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.title {
+  font-size: 13px;
+  color: var(--inv-gold-deep);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.name {
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(30px, 8vw, 42px);
+  color: var(--inv-ink);
+  line-height: 1.25;
+}
+.amp {
+  font-family: "Aref Ruqaa", serif;
+  font-size: 30px;
+  color: var(--inv-gold);
+}
+
+.mini-flourish {
+  display: block;
+  width: 130px;
+  height: auto;
+  margin: 16px auto 0;
+  color: var(--inv-gold-light);
+}
+
+.date-day {
+  font-size: 16px;
+  color: var(--inv-muted);
+  margin-bottom: 6px;
+}
+.date-num {
+  font-family: "Aref Ruqaa", serif;
+  font-size: 26px;
+  color: var(--inv-gold-deep);
+  letter-spacing: 1px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.cbox {
+  background: oklch(1 0 0);
+  border: 1px solid var(--inv-gold-light);
+  min-width: 70px;
+  padding: 12px 6px 10px;
+}
+.cnum {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--inv-gold-deep);
+  font-variant-numeric: tabular-nums;
+}
+.clabel {
+  font-size: 11px;
+  color: var(--inv-muted);
+  margin-top: 4px;
+}
+
+.venue-name {
+  position: relative;
+  display: inline-block;
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(24px, 6.2vw, 31px);
+  color: var(--inv-gold-deep);
+  padding-bottom: 12px;
+  margin-bottom: 6px;
+}
+.venue-name::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 2px;
+  background: var(--inv-gold);
+}
+.venue-city {
+  font-size: 14px;
+  color: var(--inv-muted);
+  margin: 8px 0 22px;
+}
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border: 1px solid var(--inv-gold);
+  color: var(--inv-gold-deep);
+  text-decoration: none;
+  font-size: 14px;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.map-btn:hover {
+  background: var(--inv-gold);
+  color: oklch(1 0 0);
+}
+.map-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer {
+  margin-top: 36px;
+  font-size: 13px;
+  color: var(--inv-muted);
+  line-height: 2;
+}
+.footer .fam {
+  color: var(--inv-gold-deep);
+  font-weight: 500;
+}
+
