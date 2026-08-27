@@ -271,13 +271,30 @@
   }
 }
 
-.mono-img {
+.mono-wrap {
   position: relative;
   z-index: 1;
+  margin-top: clamp(30px, 12vh, 110px);
+  display: grid;
+  place-items: center;
+}
+
+.mono-halo {
+  position: absolute;
+  width: min(320px, 82vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(1 0 0 / 0.9) 0%, oklch(0.96 0.03 92 / 0.35) 45%, transparent 70%);
+  box-shadow: 0 0 60px oklch(0.9 0.06 92 / 0.5);
+  opacity: 0;
+  animation: inv-rise 1.8s ease 1s forwards;
+}
+
+.mono-img {
+  position: relative;
   width: min(268px, 66%);
   height: auto;
-  margin-top: clamp(34px, 13vh, 118px);
-  filter: drop-shadow(0 6px 14px oklch(0.5 0.04 70 / 0.25));
+  filter: drop-shadow(0 8px 18px oklch(0.7 0.05 85 / 0.28));
   opacity: 0;
   transform: scale(0.86);
   animation: inv-mono 1.25s cubic-bezier(0.2, 0.8, 0.3, 1) 1.25s forwards;
@@ -288,6 +305,59 @@
     transform: scale(1);
   }
 }
+
+.cover-rule {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(240px, 62%);
+  color: var(--inv-gold);
+  opacity: 0;
+  animation: inv-rise 1s ease 1.9s forwards;
+}
+.cover-rule span {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inv-gold), transparent);
+}
+.cover-rule svg {
+  width: 13px;
+  height: 13px;
+}
+
+.sound-toggle {
+  position: absolute;
+  top: 16px;
+  inset-inline-start: 16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid oklch(0.85 0.05 90 / 0.7);
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.72);
+  backdrop-filter: blur(6px);
+  color: var(--inv-gold-deep);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px oklch(0.75 0.05 88 / 0.18);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.sound-toggle:hover {
+  background: oklch(1 0 0 / 0.92);
+  transform: translateY(-1px);
+}
+.sound-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
 
 .cover-couple,
 .cover-date,
