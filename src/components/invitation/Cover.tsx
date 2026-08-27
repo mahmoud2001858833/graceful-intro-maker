@@ -28,7 +28,11 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
       }
     };
     void start();
-    const onGesture = () => void start();
+    const onGesture = (e: Event) => {
+      // the toggle button manages sound itself
+      if (e.target instanceof Element && e.target.closest(".sound-toggle")) return;
+      void start();
+    };
     window.addEventListener("pointerdown", onGesture, { passive: true });
     window.addEventListener("touchstart", onGesture, { passive: true });
     window.addEventListener("keydown", onGesture);
