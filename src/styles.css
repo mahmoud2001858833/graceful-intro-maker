@@ -147,16 +147,17 @@
    Wedding invitation design tokens
    ============================================================ */
 :root {
-  --inv-bg: oklch(0.98 0.012 85);
-  --inv-panel: oklch(0.985 0.008 85);
-  --inv-cover: oklch(0.8 0.033 80);
-  --inv-cover-deep: oklch(0.74 0.038 78);
-  --inv-gold: oklch(0.66 0.062 75);
-  --inv-gold-deep: oklch(0.53 0.06 72);
-  --inv-gold-light: oklch(0.88 0.032 82);
-  --inv-ink: oklch(0.29 0.018 62);
+  --inv-bg: oklch(0.995 0.004 90);
+  --inv-panel: oklch(1 0 0);
+  --inv-cover: oklch(0.985 0.008 90);
+  --inv-cover-deep: oklch(0.965 0.014 92);
+  --inv-gold: oklch(0.76 0.104 84);
+  --inv-gold-deep: oklch(0.62 0.096 78);
+  --inv-gold-light: oklch(0.93 0.048 92);
+  --inv-ink: oklch(0.27 0.014 60);
   --inv-muted: oklch(0.56 0.02 70);
 }
+
 
 .invite-root {
   background: var(--inv-bg);
