@@ -1,8 +1,9 @@
 import { Countdown } from "./Countdown";
+import { useReveal } from "@/hooks/use-reveal";
 
 function Divider() {
   return (
-    <div className="divider">
+    <div className="divider" data-reveal>
       <span className="line" />
       <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
         <path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z" />
@@ -13,8 +14,10 @@ function Divider() {
 }
 
 export function InvitationCard() {
+  const ref = useReveal<HTMLDivElement>();
+
   return (
-    <div className="content-wrap">
+    <div className="content-wrap" ref={ref}>
       <section id="main-invite" className="frame">
         <span className="c1" />
         <span className="c2" />
@@ -25,9 +28,19 @@ export function InvitationCard() {
         <span className="corner-dot cd3" />
         <span className="corner-dot cd4" />
 
-        <div className="bismillah">بسم الله الرحمن الرحيم</div>
+        <div className="bismillah" data-reveal>
+          بسم الله الرحمن الرحيم
+        </div>
 
-        <svg className="opening-ornament" viewBox="0 0 300 80" fill="none" stroke="currentColor" strokeWidth="1.1" aria-hidden="true">
+        <svg
+          className="opening-ornament"
+          viewBox="0 0 300 80"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.1"
+          aria-hidden="true"
+          data-reveal
+        >
           <path d="M22 54 C 80 12, 220 12, 278 54" strokeLinecap="round" />
           <path d="M46 56 C 92 26, 208 26, 254 56" strokeLinecap="round" opacity=".5" />
           <circle cx="22" cy="54" r="2.2" fill="currentColor" stroke="none" />
@@ -35,7 +48,7 @@ export function InvitationCard() {
           <circle cx="150" cy="16" r="3" fill="currentColor" stroke="none" />
         </svg>
 
-        <div className="ayah-wrap">
+        <div className="ayah-wrap" data-reveal>
           <span className="qmark">﴿</span>
           <span className="ayah">وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</span>
           <span className="qmark">﴾</span>
@@ -43,13 +56,17 @@ export function InvitationCard() {
 
         <Divider />
 
-        <div className="honor">يتشرف</div>
-        <div className="fam-names">
+        <div className="honor" data-reveal>
+          يتشرف
+        </div>
+        <div className="fam-names" data-reveal>
           عرفات عوض الزعبي<span className="amp-sm">و</span>محمد عبدالله جوارنة
         </div>
-        <div className="invite-line">بدعوتكم لحضور حفل زفاف</div>
+        <div className="invite-line" data-reveal>
+          بدعوتكم لحضور حفل زفاف
+        </div>
 
-        <div className="names">
+        <div className="names" data-reveal>
           <div className="name-block">
             <div className="title">المهندس</div>
             <div className="name">محمد</div>
@@ -61,24 +78,33 @@ export function InvitationCard() {
           </div>
         </div>
 
-        <svg className="mini-flourish" viewBox="0 0 140 24" fill="none" stroke="currentColor" strokeWidth="1.1" aria-hidden="true">
+        <svg
+          className="mini-flourish"
+          viewBox="0 0 140 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.1"
+          aria-hidden="true"
+          data-reveal
+        >
           <path d="M4 12 C 30 -2, 45 26, 70 12 C 95 -2, 110 26, 136 12" />
         </svg>
 
         <Divider />
 
-        <div className="date-box">
+        <div className="date-box" data-reveal>
           <div className="date-day">يوم الجمعة</div>
           <div className="date-num">٤ / ٩ / ٢٠٢٦</div>
         </div>
 
-        <Countdown />
+        <div data-reveal>
+          <Countdown />
+        </div>
 
         <Divider />
 
-        <div>
+        <div data-reveal>
           <div className="venue-name">حديقة تاج بارك للمناسبات</div>
-          <div className="venue-city">الرمثا</div>
           <a
             className="map-btn"
             href="https://maps.app.goo.gl/dSUuE2fwf2WoBmmf7"
@@ -96,7 +122,7 @@ export function InvitationCard() {
           </div>
         </div>
 
-        <div className="footer">
+        <div className="footer" data-reveal>
           بحضوركم تكتمل فرحتنا
           <br />
           <span className="fam">عائلتا الزعبي والجوارنة</span>

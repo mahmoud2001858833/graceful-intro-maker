@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
 import { Cover } from "@/components/invitation/Cover";
 import { InvitationCard } from "@/components/invitation/InvitationCard";
+import { smoothScrollToElement } from "@/lib/smooth-scroll";
 
 export const Route = createFileRoute("/")({
   head: () => ({
