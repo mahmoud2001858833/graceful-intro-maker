@@ -122,6 +122,31 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
           </div>
         </div>
 
+        {showDinner && (
+          <>
+            <Divider />
+            <div data-reveal>
+              <div className="dinner-invite">
+                نتشرّف بدعوتكم لتناول العشاء بعد الحفل، وذلك في منزل والد العريس.
+              </div>
+              <div className="venue-cta">
+                <a
+                  className="map-btn"
+                  href="https://maps.app.goo.gl/zge88EK2fN7UhKPK8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+                    <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  عرض الموقع على الخريطة
+                </a>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="footer" data-reveal>
           بحضوركم تكتمل فرحتنا
           <br />
