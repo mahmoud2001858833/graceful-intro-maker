@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Cover } from "@/components/invitation/Cover";
+import { EntryGate } from "@/components/invitation/EntryGate";
 import { InvitationCard } from "@/components/invitation/InvitationCard";
 import { MusicPlayer } from "@/components/invitation/MusicPlayer";
 import { smoothScrollToElement } from "@/lib/smooth-scroll";
@@ -30,13 +31,19 @@ export function InvitationPage({ showDinner = false }: { showDinner?: boolean })
   const goToInvite = useCallback(() => {
     smoothScrollToElement("main-invite", 2800);
   }, []);
+  const [entered, setEntered] = useState(false);
 
   return (
     <main dir="rtl" className="invite-root">
       <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
       <MusicPlayer />
-      <Cover onGoToInvite={goToInvite} />
-      <InvitationCard showDinner={showDinner} />
+      {!entered && <EntryGate onEnter={() => setEntered(true)} />}
+      {entered && (
+        <>
+          <Cover onGoToInvite={goToInvite} />
+          <InvitationCard showDinner={showDinner} />
+        </>
+      )}
     </main>
   );
 }
