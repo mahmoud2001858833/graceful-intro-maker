@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
 import { Cover } from "@/components/invitation/Cover";
 import { InvitationCard } from "@/components/invitation/InvitationCard";
+import { MusicPlayer } from "@/components/invitation/MusicPlayer";
 import { smoothScrollToElement } from "@/lib/smooth-scroll";
 
 export const Route = createFileRoute("/")({
@@ -33,6 +34,7 @@ function Index() {
   return (
     <main dir="rtl" className="invite-root">
       <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
+      <MusicPlayer />
       <Cover onGoToInvite={goToInvite} />
       <InvitationCard />
     </main>
