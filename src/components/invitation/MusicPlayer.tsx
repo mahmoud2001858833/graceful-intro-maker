@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import track from "@/assets/promise-of-union.mp3.asset.json";
+
+const TRACK_URL = "/promise-of-union.mp3";
 
 const TARGET_VOLUME = 0.55;
 
