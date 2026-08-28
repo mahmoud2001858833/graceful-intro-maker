@@ -63,12 +63,12 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         <div className="fam-names" data-reveal>
           <div className="fam-row">
             <div className="fam-pair">
-              <div className="fam-title">سيد</div>
+              <div className="fam-title">السيد</div>
               <div className="fam-name">عرفات عوض الزعبي</div>
             </div>
             <span className="amp-sm">و</span>
             <div className="fam-pair">
-              <div className="fam-title">مهندس</div>
+              <div className="fam-title">المهندس</div>
               <div className="fam-name">محمد عبدالله جوارنة</div>
             </div>
           </div>
