@@ -693,12 +693,13 @@
 
 .venue-name {
   position: relative;
-  display: inline-block;
+  display: block;
+  text-align: center;
   font-family: "Aref Ruqaa", serif;
   font-size: clamp(24px, 6.2vw, 31px);
   color: var(--inv-gold-deep);
   padding-bottom: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 18px;
 }
 .venue-name::after {
   content: "";
