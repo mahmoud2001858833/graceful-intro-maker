@@ -34,6 +34,7 @@ function Index() {
   return (
     <main dir="rtl" className="invite-root">
       <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
+      <MusicPlayer />
       <Cover onGoToInvite={goToInvite} />
       <InvitationCard />
     </main>
