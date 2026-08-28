@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 const TRACK_URL = "/promise-of-union.mp3";
-
 const TARGET_VOLUME = 0.55;
 
 export function MusicPlayer() {
@@ -12,7 +11,6 @@ export function MusicPlayer() {
   const start = () => {
     const el = audioRef.current;
     if (!el) return;
-    el.currentTime = 0;
     el.muted = false;
     el.volume = TARGET_VOLUME;
     el.play()
@@ -20,57 +18,64 @@ export function MusicPlayer() {
       .catch(() => setPlaying(false));
   };
 
-  // Browsers block unmuted audio autoplay until the visitor interacts.
-  // Start the track muted immediately (allowed), then unmute on the first
-  // gesture so sound begins with near-zero delay.
+  // Browsers block unmuted autoplay until the visitor interacts.
+  // 1) Try unmuted autoplay immediately (works on some browsers).
+  // 2) Regardless of the result, hook every common gesture so the very
+  //    first touch / tap / scroll / keypress starts the sound.
   useEffect(() => {
     setReady(true);
     const el = audioRef.current;
     if (!el) return;
-    let unmuted = false;
-    const unmute = () => {
-      if (unmuted) return;
-      unmuted = true;
+
+    let started = false;
+
+    const cleanup = () => {
+      window.removeEventListener("pointerdown", onGesture, true);
+      window.removeEventListener("touchend", onGesture, true);
+      window.removeEventListener("click", onGesture, true);
+      window.removeEventListener("keydown", onGesture, true);
+      window.removeEventListener("wheel", onGesture, true);
+      window.removeEventListener("touchmove", onGesture, true);
+      window.removeEventListener("scroll", onGesture, true);
+    };
+
+    const playWithSound = () => {
       el.muted = false;
       el.volume = TARGET_VOLUME;
-      setPlaying(true);
-      cleanup();
+      return el.play();
     };
-    const cleanup = () => {
-      window.removeEventListener("pointerdown", unmute);
-      window.removeEventListener("keydown", unmute);
-      window.removeEventListener("touchstart", unmute);
-      window.removeEventListener("wheel", unmute);
+
+    const onGesture = () => {
+      if (started) return;
+      playWithSound()
+        .then(() => {
+          started = true;
+          setPlaying(true);
+          cleanup();
+        })
+        .catch(() => {
+          // Gesture not accepted yet; keep listening for the next one.
+        });
     };
-    el.muted = true;
-    el.volume = 0;
-    el.currentTime = 0;
-    // First try unmuted autoplay (works if the browser allows it).
-    el.play()
+
+    // Immediate unmuted autoplay attempt.
+    playWithSound()
       .then(() => {
-        unmuted = true;
-        el.muted = false;
-        el.volume = TARGET_VOLUME;
+        started = true;
         setPlaying(true);
-        cleanup();
       })
       .catch(() => {
-        // Unmuted autoplay blocked: fall back to muted autoplay so the
-        // track is already rolling, and unmute on first interaction.
-        el.muted = true;
-        el.play()
-          .then(() => {
-            setPlaying(true);
-            window.addEventListener("pointerdown", unmute);
-            window.addEventListener("keydown", unmute);
-            window.addEventListener("touchstart", unmute, { passive: true });
-            window.addEventListener("wheel", unmute, { passive: true });
-          })
-          .catch(() => setPlaying(false));
+        // Autoplay blocked — arm the gesture listeners.
+        window.addEventListener("pointerdown", onGesture, true);
+        window.addEventListener("touchend", onGesture, true);
+        window.addEventListener("click", onGesture, true);
+        window.addEventListener("keydown", onGesture, true);
+        window.addEventListener("wheel", onGesture, true);
+        window.addEventListener("touchmove", onGesture, true);
+        window.addEventListener("scroll", onGesture, true);
       });
-    return () => {
-      cleanup();
-    };
+
+    return () => cleanup();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -87,7 +92,7 @@ export function MusicPlayer() {
 
   return (
     <>
-      <audio ref={audioRef} src={TRACK_URL} loop preload="auto" />
+      <audio ref={audioRef} src={TRACK_URL} loop preload="auto" playsInline />
       <button
         type="button"
         className={`music-toggle${playing ? " is-playing" : ""}${ready ? " is-ready" : ""}`}
