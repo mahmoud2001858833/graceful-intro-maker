@@ -12,43 +12,60 @@ export function MusicPlayer() {
     const el = audioRef.current;
     if (!el) return;
     el.currentTime = 0;
+    el.muted = false;
     el.volume = TARGET_VOLUME;
     el.play()
       .then(() => setPlaying(true))
       .catch(() => setPlaying(false));
   };
 
-  // Try autoplay, otherwise start on the visitor's first interaction.
+  // Browsers block unmuted audio autoplay until the visitor interacts.
+  // Start the track muted immediately (allowed), then unmute on the first
+  // gesture so sound begins with near-zero delay.
   useEffect(() => {
     setReady(true);
     const el = audioRef.current;
     if (!el) return;
-    let done = false;
-    const kick = () => {
-      if (done) return;
-      done = true;
-      start();
+    let unmuted = false;
+    const unmute = () => {
+      if (unmuted) return;
+      unmuted = true;
+      el.muted = false;
+      el.volume = TARGET_VOLUME;
+      setPlaying(true);
       cleanup();
     };
     const cleanup = () => {
-      window.removeEventListener("pointerdown", kick);
-      window.removeEventListener("keydown", kick);
-      window.removeEventListener("touchstart", kick);
-      window.removeEventListener("wheel", kick);
+      window.removeEventListener("pointerdown", unmute);
+      window.removeEventListener("keydown", unmute);
+      window.removeEventListener("touchstart", unmute);
+      window.removeEventListener("wheel", unmute);
     };
-    el.volume = TARGET_VOLUME;
+    el.muted = true;
+    el.volume = 0;
     el.currentTime = 0;
+    // First try unmuted autoplay (works if the browser allows it).
     el.play()
       .then(() => {
-        done = true;
+        unmuted = true;
+        el.muted = false;
+        el.volume = TARGET_VOLUME;
         setPlaying(true);
         cleanup();
       })
       .catch(() => {
-        window.addEventListener("pointerdown", kick);
-        window.addEventListener("keydown", kick);
-        window.addEventListener("touchstart", kick, { passive: true });
-        window.addEventListener("wheel", kick, { passive: true });
+        // Unmuted autoplay blocked: fall back to muted autoplay so the
+        // track is already rolling, and unmute on first interaction.
+        el.muted = true;
+        el.play()
+          .then(() => {
+            setPlaying(true);
+            window.addEventListener("pointerdown", unmute);
+            window.addEventListener("keydown", unmute);
+            window.addEventListener("touchstart", unmute, { passive: true });
+            window.addEventListener("wheel", unmute, { passive: true });
+          })
+          .catch(() => setPlaying(false));
       });
     return () => {
       cleanup();
