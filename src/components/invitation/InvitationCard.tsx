@@ -93,8 +93,8 @@ export function InvitationCard() {
         <Divider />
 
         <div className="date-box" data-reveal>
-          <div className="date-day">يوم الجمعة</div>
-          <div className="date-num">٤ / ٩ / ٢٠٢٦</div>
+          <div className="date-day">Friday</div>
+          <div className="date-num" dir="ltr">4 / 9 / 2026</div>
         </div>
 
         <div data-reveal>
