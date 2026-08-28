@@ -59,9 +59,21 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         <div className="honor" data-reveal>
           يتشرف
         </div>
+
         <div className="fam-names" data-reveal>
-          <span className="fam-title">سيد</span> عرفات عوض الزعبي<span className="amp-sm">و</span><span className="fam-title">مهندس</span> محمد عبدالله جوارنة
+          <div className="fam-row">
+            <div className="fam-pair">
+              <div className="fam-title">سيد</div>
+              <div className="fam-name">عرفات عوض الزعبي</div>
+            </div>
+            <span className="amp-sm">و</span>
+            <div className="fam-pair">
+              <div className="fam-title">مهندس</div>
+              <div className="fam-name">محمد عبدالله جوارنة</div>
+            </div>
+          </div>
         </div>
+
         <div className="invite-line" data-reveal>
           بدعوتكم لحضور حفل زفاف
         </div>
@@ -95,6 +107,13 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         <div className="date-box" data-reveal>
           <div className="date-day">الجمعة</div>
           <div className="date-num" dir="ltr">4 / 9 / 2026</div>
+        </div>
+
+        <div className="time-box" data-reveal>
+          <div className="time-label">موعد الاحتفال</div>
+          <div className="time-range" dir="rtl">
+            من السابعة والنصف مساءً حتى التاسعة مساءً
+          </div>
         </div>
 
         <div data-reveal>
