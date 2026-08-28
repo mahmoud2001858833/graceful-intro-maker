@@ -655,15 +655,19 @@
 }
 
 .date-day {
-  font-size: 16px;
-  color: var(--inv-muted);
-  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--inv-gold-deep);
+  margin-bottom: 8px;
 }
 .date-num {
-  font-family: "Aref Ruqaa", serif;
-  font-size: 26px;
+  font-family: "Cormorant Garamond", "Aref Ruqaa", serif;
+  font-size: 40px;
+  font-weight: 700;
   color: var(--inv-gold-deep);
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  text-shadow: 0 1px 0 oklch(0.96 0.02 85), 0 0 18px oklch(0.78 0.13 85 / 0.25);
 }
 
 .countdown {
