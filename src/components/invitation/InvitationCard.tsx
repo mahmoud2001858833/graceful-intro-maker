@@ -93,7 +93,7 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         <Divider />
 
         <div className="date-box" data-reveal>
-          <div className="date-day">Friday</div>
+          <div className="date-day">الجمعة</div>
           <div className="date-num" dir="ltr">4 / 9 / 2026</div>
         </div>
 
