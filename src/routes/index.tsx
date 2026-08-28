@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "حفل زفاف محمد وفرح — ٤ / ٩ / ٢٠٢٦" },
       {
         property: "og:description",
-        content: "بحضوركم تكتمل فرحتنا — حديقة تاج بارك للمناسبات، الرمثا.",
+        content: "بحضوركم تكتمل فرحتنا — حديقة تاج بارك للمناسبات.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,10 +27,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const goToInvite = useCallback(() => {
-    document.getElementById("main-invite")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    smoothScrollToElement("main-invite", 2800);
   }, []);
 
   return (
