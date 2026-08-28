@@ -2,9 +2,12 @@ import { useEffect, useRef } from "react";
 import monogram from "@/assets/monogram.png.asset.json";
 import { Curtains } from "./Curtains";
 import { Chandelier } from "./Chandelier";
+import { smoothScrollToBottom } from "@/lib/smooth-scroll";
 
 const INTRO_MS = 3200;
 const AUTO_SCROLL_DELAY_MS = 2000;
+const SCROLL_DURATION_MS = 2800;
+const SECOND_SCROLL_DELAY_MS = 3000;
 
 export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
   const cancelled = useRef(false);
@@ -23,8 +26,20 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
       }
     }, INTRO_MS + AUTO_SCROLL_DELAY_MS);
 
+    // After the first auto-scroll settles, wait 3s then continue to the
+    // bottom so guests discover the rest of the card automatically.
+    const timer2 = window.setTimeout(
+      () => {
+        if (!cancelled.current) {
+          smoothScrollToBottom(SCROLL_DURATION_MS);
+        }
+      },
+      INTRO_MS + AUTO_SCROLL_DELAY_MS + SCROLL_DURATION_MS + SECOND_SCROLL_DELAY_MS,
+    );
+
     return () => {
       window.clearTimeout(timer);
+      window.clearTimeout(timer2);
       window.removeEventListener("wheel", cancel);
       window.removeEventListener("touchmove", cancel);
       window.removeEventListener("keydown", cancel);
