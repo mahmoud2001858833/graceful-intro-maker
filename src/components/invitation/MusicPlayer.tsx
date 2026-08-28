@@ -36,12 +36,12 @@ export function MusicPlayer() {
       window.removeEventListener("touchstart", kick);
       window.removeEventListener("wheel", kick);
     };
-    el.volume = 0;
+    el.volume = TARGET_VOLUME;
+    el.currentTime = 0;
     el.play()
       .then(() => {
         done = true;
         setPlaying(true);
-        fadeTo(TARGET_VOLUME);
         cleanup();
       })
       .catch(() => {
@@ -52,7 +52,6 @@ export function MusicPlayer() {
       });
     return () => {
       cleanup();
-      if (fadeRef.current) window.clearInterval(fadeRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -61,9 +60,7 @@ export function MusicPlayer() {
     const el = audioRef.current;
     if (!el) return;
     if (playing) {
-      fadeTo(0, () => {
-        el.pause();
-      });
+      el.pause();
       setPlaying(false);
     } else {
       start();
