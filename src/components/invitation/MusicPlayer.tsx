@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import track from "@/assets/promise-of-union.mp3.asset.json";
+
+const TRACK_URL = "/promise-of-union.mp3";
 
 const TARGET_VOLUME = 0.55;
 
@@ -86,7 +87,7 @@ export function MusicPlayer() {
 
   return (
     <>
-      <audio ref={audioRef} src={track.url} loop preload="auto" />
+      <audio ref={audioRef} src={TRACK_URL} loop preload="auto" />
       <button
         type="button"
         className={`music-toggle${playing ? " is-playing" : ""}${ready ? " is-ready" : ""}`}

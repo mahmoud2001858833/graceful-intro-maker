@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import monogram from "@/assets/monogram.png.asset.json";
 import { Curtains } from "./Curtains";
 import { Chandelier } from "./Chandelier";
 import { smoothScrollToBottom } from "@/lib/smooth-scroll";
@@ -55,7 +54,7 @@ export function Cover({ onGoToInvite }: { onGoToInvite: () => void }) {
 
       <div className="mono-wrap">
         <span className="mono-halo" aria-hidden="true" />
-        <img className="mono-img" src={monogram.url} alt="حرفا محمد وفرح متشابكان بخط عربي مرصّع" />
+        <img className="mono-img" src="/monogram.png" alt="حرفا محمد وفرح متشابكان بخط عربي مرصّع" />
       </div>
 
       <div className="cover-rule" aria-hidden="true">
