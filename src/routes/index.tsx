@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Cover } from "@/components/invitation/Cover";
+import { EntryGate } from "@/components/invitation/EntryGate";
 import { InvitationCard } from "@/components/invitation/InvitationCard";
 import { MusicPlayer } from "@/components/invitation/MusicPlayer";
 import { smoothScrollToElement } from "@/lib/smooth-scroll";

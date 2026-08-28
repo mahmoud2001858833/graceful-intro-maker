@@ -58,6 +58,12 @@ export function MusicPlayer() {
         });
     };
 
+    const onEnterEvent = () => {
+      if (started) return;
+      el.currentTime = 0;
+      onGesture();
+    };
+
     // Immediate unmuted autoplay attempt.
     playWithSound()
       .then(() => {
@@ -65,7 +71,7 @@ export function MusicPlayer() {
         setPlaying(true);
       })
       .catch(() => {
-        // Autoplay blocked — arm the gesture listeners.
+        // Autoplay blocked — arm the gesture listeners and the entry gate.
         window.addEventListener("pointerdown", onGesture, true);
         window.addEventListener("touchend", onGesture, true);
         window.addEventListener("click", onGesture, true);
@@ -73,9 +79,13 @@ export function MusicPlayer() {
         window.addEventListener("wheel", onGesture, true);
         window.addEventListener("touchmove", onGesture, true);
         window.addEventListener("scroll", onGesture, true);
+        window.addEventListener("invitation:enter", onEnterEvent);
       });
 
-    return () => cleanup();
+    return () => {
+      cleanup();
+      window.removeEventListener("invitation:enter", onEnterEvent);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
