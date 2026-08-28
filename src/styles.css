@@ -570,14 +570,13 @@
 }
 .fam-names .fam-title {
   display: inline-block;
-  font-family: "Cairo", "Aref Ruqaa", serif;
-  font-size: 0.78em;
-  font-weight: 800;
-  color: var(--inv-ink);
-  letter-spacing: 0;
+  font-family: "Aref Ruqaa", serif;
+  font-size: 0.72em;
+  font-weight: 700;
+  color: var(--inv-gold-deep);
+  letter-spacing: 0.5px;
   vertical-align: middle;
   margin-inline-start: 2px;
-  text-shadow: 0 0 0 transparent;
 }
 .invite-line {
   margin-top: 16px;
