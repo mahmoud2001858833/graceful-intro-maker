@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
 import { Cover } from "@/components/invitation/Cover";
 import { InvitationCard } from "@/components/invitation/InvitationCard";
+import { smoothScrollToElement } from "@/lib/smooth-scroll";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -10,12 +11,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "دعوة حفل زفاف محمد وفرح، يوم الجمعة ٤ / ٩ / ٢٠٢٦ في حديقة تاج بارك للمناسبات — الرمثا. بحضوركم تكتمل فرحتنا.",
+          "دعوة حفل زفاف محمد وفرح، يوم الجمعة ٤ / ٩ / ٢٠٢٦ في حديقة تاج بارك للمناسبات. بحضوركم تكتمل فرحتنا.",
       },
       { property: "og:title", content: "حفل زفاف محمد وفرح — ٤ / ٩ / ٢٠٢٦" },
       {
         property: "og:description",
-        content: "بحضوركم تكتمل فرحتنا — حديقة تاج بارك للمناسبات، الرمثا.",
+        content: "بحضوركم تكتمل فرحتنا — حديقة تاج بارك للمناسبات.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -26,10 +27,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const goToInvite = useCallback(() => {
-    document.getElementById("main-invite")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    smoothScrollToElement("main-invite", 2800);
   }, []);
 
   return (
