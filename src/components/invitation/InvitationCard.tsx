@@ -105,19 +105,19 @@ export function InvitationCard() {
 
         <div data-reveal>
           <div className="venue-name">حديقة تاج بارك للمناسبات</div>
-          <a
-            className="map-btn"
-            href="https://maps.app.goo.gl/dSUuE2fwf2WoBmmf7"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-              <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            عرض الموقع على الخريطة
-          </a>
-          <div>
+          <div className="venue-cta">
+            <a
+              className="map-btn"
+              href="https://maps.app.goo.gl/dSUuE2fwf2WoBmmf7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+                <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              عرض الموقع على الخريطة
+            </a>
             <span className="notice">ممنوع اصطحاب الأطفال</span>
           </div>
         </div>
