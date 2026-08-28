@@ -60,7 +60,7 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
           يتشرف
         </div>
         <div className="fam-names" data-reveal>
-          عرفات عوض الزعبي<span className="amp-sm">و</span>محمد عبدالله جوارنة
+          <span className="fam-title">سيد</span> عرفات عوض الزعبي<span className="amp-sm">و</span><span className="fam-title">مهندس</span> محمد عبدالله جوارنة
         </div>
         <div className="invite-line" data-reveal>
           بدعوتكم لحضور حفل زفاف
