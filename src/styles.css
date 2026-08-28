@@ -748,6 +748,26 @@
   height: 16px;
 }
 
+.dinner-invite {
+  position: relative;
+  text-align: center;
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(18px, 4.6vw, 23px);
+  color: var(--inv-gold-deep);
+  line-height: 2;
+  margin-bottom: 18px;
+  padding: 0 8px;
+}
+.dinner-invite::before,
+.dinner-invite::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 2px;
+  background: var(--inv-gold);
+  margin: 14px auto;
+}
+
 .footer {
   margin-top: 36px;
   font-size: 13px;
