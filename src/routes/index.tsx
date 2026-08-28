@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Index() {
+export function InvitationPage({ showDinner = false }: { showDinner?: boolean }) {
   const goToInvite = useCallback(() => {
     smoothScrollToElement("main-invite", 2800);
   }, []);
@@ -36,7 +36,11 @@ function Index() {
       <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
       <MusicPlayer />
       <Cover onGoToInvite={goToInvite} />
-      <InvitationCard />
+      <InvitationCard showDinner={showDinner} />
     </main>
   );
+}
+
+function Index() {
+  return <InvitationPage />;
 }
