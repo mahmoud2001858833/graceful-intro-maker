@@ -31,13 +31,19 @@ export function InvitationPage({ showDinner = false }: { showDinner?: boolean })
   const goToInvite = useCallback(() => {
     smoothScrollToElement("main-invite", 2800);
   }, []);
+  const [entered, setEntered] = useState(false);
 
   return (
     <main dir="rtl" className="invite-root">
       <h1 className="sr-only">دعوة حفل زفاف محمد وفرح</h1>
       <MusicPlayer />
-      <Cover onGoToInvite={goToInvite} />
-      <InvitationCard showDinner={showDinner} />
+      {!entered && <EntryGate onEnter={() => setEntered(true)} />}
+      {entered && (
+        <>
+          <Cover onGoToInvite={goToInvite} />
+          <InvitationCard showDinner={showDinner} />
+        </>
+      )}
     </main>
   );
 }
