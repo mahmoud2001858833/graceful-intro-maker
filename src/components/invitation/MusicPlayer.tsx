@@ -1,41 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import track from "@/assets/promise-of-union.mp3.asset.json";
 
-const TARGET_VOLUME = 0.45;
-const FADE_MS = 2200;
+const TARGET_VOLUME = 0.55;
 
 export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const fadeRef = useRef<number | null>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
-
-  const fadeTo = (to: number, done?: () => void) => {
-    const el = audioRef.current;
-    if (!el) return;
-    if (fadeRef.current) window.clearInterval(fadeRef.current);
-    const from = el.volume;
-    const start = performance.now();
-    fadeRef.current = window.setInterval(() => {
-      const t = Math.min(1, (performance.now() - start) / FADE_MS);
-      el.volume = Math.max(0, Math.min(1, from + (to - from) * t));
-      if (t >= 1) {
-        if (fadeRef.current) window.clearInterval(fadeRef.current);
-        fadeRef.current = null;
-        done?.();
-      }
-    }, 40);
-  };
 
   const start = () => {
     const el = audioRef.current;
     if (!el) return;
-    el.volume = 0;
+    el.currentTime = 0;
+    el.volume = TARGET_VOLUME;
     el.play()
-      .then(() => {
-        setPlaying(true);
-        fadeTo(TARGET_VOLUME);
-      })
+      .then(() => setPlaying(true))
       .catch(() => setPlaying(false));
   };
 
@@ -57,12 +36,12 @@ export function MusicPlayer() {
       window.removeEventListener("touchstart", kick);
       window.removeEventListener("wheel", kick);
     };
-    el.volume = 0;
+    el.volume = TARGET_VOLUME;
+    el.currentTime = 0;
     el.play()
       .then(() => {
         done = true;
         setPlaying(true);
-        fadeTo(TARGET_VOLUME);
         cleanup();
       })
       .catch(() => {
@@ -73,7 +52,6 @@ export function MusicPlayer() {
       });
     return () => {
       cleanup();
-      if (fadeRef.current) window.clearInterval(fadeRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,9 +60,7 @@ export function MusicPlayer() {
     const el = audioRef.current;
     if (!el) return;
     if (playing) {
-      fadeTo(0, () => {
-        el.pause();
-      });
+      el.pause();
       setPlaying(false);
     } else {
       start();
