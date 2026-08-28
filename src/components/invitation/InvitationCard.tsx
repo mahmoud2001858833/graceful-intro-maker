@@ -13,7 +13,7 @@ function Divider() {
   );
 }
 
-export function InvitationCard() {
+export function InvitationCard({ showDinner = false }: { showDinner?: boolean }) {
   const ref = useReveal<HTMLDivElement>();
 
   return (
