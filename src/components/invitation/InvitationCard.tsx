@@ -63,8 +63,8 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         <div className="fam-names" data-reveal>
           <div className="fam-row">
             <div className="fam-pair">
-              <div className="fam-title">السيد</div>
-              <div className="fam-name">عرفات عوض الزعبي</div>
+              <div className="fam-title">حاج</div>
+              <div className="fam-name">عرفات محمد عوض الزعبي</div>
             </div>
             <span className="amp-sm">و</span>
             <div className="fam-pair">
@@ -85,7 +85,7 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
           </div>
           <div className="amp">و</div>
           <div className="name-block">
-            <div className="title">د. صيدلانية</div>
+            <div className="title">الدكتورة الصيدلانية</div>
             <div className="name">فرح</div>
           </div>
         </div>
@@ -110,9 +110,9 @@ export function InvitationCard({ showDinner = false }: { showDinner?: boolean })
         </div>
 
         <div className="time-box" data-reveal>
-          <div className="time-label">موعد الاحتفال</div>
+          <div className="time-label">موعد الزفاف</div>
           <div className="time-range" dir="rtl">
-            من السابعة والنصف مساءً حتى التاسعة مساءً
+            من السابعة والنصف مساءً حتى التاسعة والنصف مساءً
           </div>
         </div>
 
